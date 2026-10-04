@@ -1,0 +1,328 @@
+/* Базовые сбросы */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Контейнер */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2%; /* Отступы, чтобы контент не лип к экрану телефона */
+}
+
+/* Главный экран */
+.main {
+    background: #d5d8d9;
+    padding: 5% 0;
+    text-align: left;
+    display: grid;
+    place-items: center;
+    height: 100dvh;
+}
+.main__title {
+    font-size: 2.5rem;
+    margin-bottom: 2%;
+}
+.main__subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2%;
+    color: #666;
+}
+.btn {
+    display: inline-block;
+    background: #007bff;
+    color: #fff;
+    padding: 1% 2.5%;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.features {
+    height: 100dvh;
+    display: grid;
+    place-items: center;
+}
+.section-title {
+    text-align: center;
+    margin-bottom: 8%;
+}
+
+/* ФЛЕКС-СЕТКА: По умолчанию строим её под ПК (3 колонки) */
+.features__grid {
+    display: flex;
+    gap: 4vw;
+    align-items: center;
+    justify-content: center;
+}
+.feature-card {
+    flex: 1; /* Карточки делят пространство поровну */
+    background: #fff;
+    padding: 3%;
+    border: 1px solid #dddcdc;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.technology {
+    height: 100dvh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    width: 100%;
+    background: #ffffff;
+}
+
+.technology__grid {
+    gap: 12vw;
+    /* width: 106vw;  */
+    margin-left: -8vw; 
+    margin-right: -8vw;
+    padding: 60px calc(53vw - 13.5vw);  /* Отступы, чтобы карточки при смещении не обрезались сверху и снизу */
+    
+    /* Включаем горизонтальную прокрутку */
+    overflow-x: auto; 
+    /* Выключаем вертикальную прокрутку, если карточки будут выходить за рамки */
+    overflow-y: hidden; 
+    
+    /* Плавный скролл на мобильных устройствах */
+    -webkit-overflow-scrolling: touch; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: grab; 
+    user-select: none;
+    -ms-overflow-style: none;  /* Для Internet Explorer и Edge */
+    scrollbar-width: none; /* Для Firefox */
+    -webkit-mask-image: linear-gradient(
+        to right, 
+        transparent 0%, 
+        black 15vw, 
+        black calc(100% - 15vw), 
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right, 
+        transparent 0%, 
+        black 15vw, 
+        black calc(100% - 15vw), 
+        transparent 100%
+    );
+}
+
+/* Изменяем курсор во время клика/перетаскивания */
+.technology__grid:active {
+    cursor: grabbing;
+}
+
+/* Стилизация полосы прокрутки (скроллбара), чтобы она выглядела аккуратно */
+.technology__grid::-webkit-scrollbar {
+    height: 6px; /* Высота полосы прокрутки */
+}
+.technology__grid::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Цвет дорожки */
+    border-radius: 10px;
+}
+.technology__grid::-webkit-scrollbar-thumb {
+    background: #c1c1c1; /* Цвет самого ползунка */
+    border-radius: 10px;
+}
+.technology__grid::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.technology-card {
+    background: #d5d8d9;
+    padding: 2%;
+    flex-basis: 27vw;
+    text-align: center;
+    aspect-ratio: 1 / 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; 
+    min-width: 27vw;
+    
+}
+
+/* Четные карточки (2 и 4) смещаем немного вниз */
+.technology-card:nth-child(even) {
+    transform: translateY(5%);
+}
+
+/* Нечетные карточки (1 и 3) смещаем немного вверх */
+.technology-card:nth-child(odd) {
+    transform: translateY(-5%);
+}
+
+/* ХЭДЕР И ФУТЕР */
+.header {
+    background-color: #fff; /* Цвет полоски меню */
+    padding: 15px 0;
+    color: #fff;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+    color: #666;
+    text-decoration: none;
+}
+
+.nav__list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px; /* Расстояние между пунктами меню */
+}
+
+.nav__link {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav__link:hover {
+    color: #00bcd4; /* Цвет при наведении */
+}
+
+/* СТИЛИ ФУТЕРА */
+.footer {
+    flex: 1 0 auto; /* Позволяет футеру занимать все оставшееся место внизу */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Сдвигает всё содержимое строго к нижнему краю */
+    background-color: #d5d8d9;
+    color: #fff;
+    padding-bottom: 40px; /* Отступ от самого низа экрана */
+    padding-top: 40px;
+    height: 100dvh;
+}
+
+.footer__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.footer__text {
+    margin: 0;
+    font-size: 16px;
+}
+
+.footer__list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer__link {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer__link:hover {
+    color: #fff;
+}
+
+/* ========================================================
+   МЕДИА-ЗАПРОС: Стили для мобильных телефонов (экран < 768px)
+   ======================================================== */
+@media (max-width: 768px) {
+    .main {
+        padding: 10% 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;   /* Выстраиваем контент внутри элемента вертикально */
+        align-items: center;      /* Центрируем внутренний контент по горизонтали */
+        justify-content: flex-end;
+        margin-top: auto;
+        margin-bottom: 3%;
+    }
+    .main__title {
+        font-size: 1.8rem; 
+    }
+    
+    .features__grid {
+        flex-direction: column;
+        grid-template-columns: 1fr; 
+        gap: 7vh;
+    }
+    .feature-card {
+        flex: none; /* Сбрасываем флекс-пропорции ПК-версии */
+        width: 50%; /* Заставляем карточку занимать всю ширину экрана */
+    }
+
+    .technology__grid {
+        flex-direction: row; 
+        gap: 12vw; 
+        width: 100vw;
+        padding: 40px calc(50vw - 32.5vw);
+        
+        -webkit-mask-image: linear-gradient(
+            to right, 
+            transparent 0%, 
+            black 15vw, 
+            black calc(100% - 15vw), 
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to right, 
+            transparent 0%, 
+            black 15vw, 
+            black calc(100% - 15vw), 
+            transparent 100%
+        );
+    }
+
+    .technology-card {
+    flex-basis: 65vw;
+    min-width: 65vw;
+    }
+
+    .technology-card:nth-child(even),
+    .technology-card:nth-child(odd) {
+        transform: translateY(0);
+    }
+
+     .header__container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav__list {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .footer__list {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
